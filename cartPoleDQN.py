@@ -1,5 +1,6 @@
 import random
 import gym
+from gym import wrappers
 import numpy as np
 from collections import deque
 from keras.models import Sequential
@@ -9,7 +10,7 @@ from keras import backend as K
 import os
 import tensorflow as tf
 
-EPISODES = 15
+EPISODES = 1000
 
 class DQNAgent:
     def __init__(self, state_size, action_size):
@@ -92,7 +93,7 @@ if __name__ == "__main__":
         state = env.reset()
         state = np.reshape(state, [1, state_size])
         for time in range(500):
-            #env.render()
+            env.render()
             action = agent.act(state)
             next_state, reward, done, _ = env.step(action)
             reward = reward if not done else -10
